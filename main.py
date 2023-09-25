@@ -37,4 +37,31 @@ def reverse_array(nums, k):
     while l < r:
         nums[l], nums[r] = nums[r], nums[l]
         l += 1
-        r -= 1  
+        r -= 1
+
+# CONTAINS DUPLICATE
+def containsDuplicate(nums):
+        nums.sort()
+        l, r = 0, 1
+        while r < len(nums):
+            if nums[l] == nums[r]:
+                return True
+            else:
+                l += 1
+                r += 1
+        return False
+
+# INTERSECTION OF ARRAYS II
+def intersect(nums1, nums2):
+    count = {}
+    result = []
+    for num in nums1:
+        if num in count:
+            count[num] += 1
+        else:
+            count[num] = 1
+    for num in nums2:
+        if num in count and count[num] > 0:
+            result.append(num)
+            count[num] -= 1
+    return result
