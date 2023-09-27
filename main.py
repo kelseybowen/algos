@@ -141,3 +141,62 @@ class TreeNode:
 
         dft(root, 1)
         return self.maxDep
+
+# VALID BINARY SEARCH TREE
+class Solution:
+    curr = None
+    def isValidBST(self, root):
+        if root.val == None:
+            return False
+        
+        def inOrder(root):
+            isValid = True
+            if root.left:
+                if not inOrder(root.left):
+                    isValid = False
+                    
+            if self.curr == None or self.curr < root.val:
+                self.curr = root.val
+            else:
+                isValid = False
+                
+            if root.right:
+                if not inOrder(root.right):
+                    isValid = False
+            return isValid
+            
+        return inOrder(root)
+
+# SYMMETRICAL TREE
+def isSymmetric(self, root):
+    
+    def dfs(left, right):
+        if not left and not right:
+            return True
+        if not left or not right:
+            return False
+        
+        return(left.val == right.val and 
+                dfs(left.left, right.right) and
+                dfs(left.right, right.left))
+        
+    return dfs(root.left, root.right)
+
+# BINARY TREE LEVEL ORDER TRAVERSAL
+def levelOrder(self, root):
+    result = []
+    level = 0
+    
+    def lot(root, level):
+        if root:
+            if len(result) < level+1:
+                result.append([])
+        
+            result[level].append(root.val)
+            if root.left:
+                lot(root.left, level+1)
+            if root.right:
+                lot(root.right, level+1)
+        return result
+        
+    return lot(root, level)
