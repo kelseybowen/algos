@@ -200,3 +200,38 @@ def levelOrder(self, root):
         return result
         
     return lot(root, level)
+
+# SORTED ARRAY TO BST
+def sortedArrayToBST(self, nums):
+    
+    def helper(l, r):
+        if l > r:
+            return None
+        m = (l + r) // 2
+        root = TreeNode(nums[m])
+        root.left = helper(l, m-1)
+        root.right = helper(m+1, r)
+        return root
+    
+    return helper(0, len(nums)-1)
+
+# MERGE SORTED ARRAY
+def merge(self, nums1, m, nums2, n) -> None:
+    """
+    Do not return anything, modify nums1 in-place instead.
+    """
+    last = m + n - 1
+    
+    while m > 0 and n > 0:
+        if nums1[m-1] > nums2[n-1]:
+            nums1[last] = nums1[m-1]
+            m -= 1
+        else:
+            nums1[last] = nums2[n-1]
+            n -= 1
+        last -= 1
+    
+    while n > 0:
+        nums1[last] = nums2[n-1]
+        n -= 1
+        last -= 1
