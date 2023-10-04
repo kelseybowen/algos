@@ -286,3 +286,13 @@ def reverseString(self, s) -> None:
         s[l], s[r] = s[r], s[l]
         l += 1
         r -= 1
+
+# REVERSE INTEGER
+def reverse(self, x: int) -> int:
+    s = str(abs(x))
+    revStr = s[::-1]
+    revInt = int(revStr)
+
+    if revInt > 2**31 -1 or revInt < -2**31:
+        return 0
+    return int(revInt) if x > 0 else int(revInt)*-1  
