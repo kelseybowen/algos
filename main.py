@@ -235,3 +235,54 @@ def merge(self, nums1, m, nums2, n) -> None:
         nums1[last] = nums2[n-1]
         n -= 1
         last -= 1
+
+# THREE SUM
+def threeSum(self, nums):
+    result = []
+    nums.sort()
+    
+    for i in range(len(nums)):
+        
+        if i > 0 and nums[i] == nums[i-1]:
+            continue
+        else:
+            l, r = i+1, len(nums)-1
+
+            while l < r:
+                three_sum = nums[i] + nums[l] + nums[r]
+                if three_sum < 0:                    
+                    l += 1
+                elif three_sum > 0:
+                    r -= 1
+                else:
+                    result.append([nums[i], nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l-1] and l < r:
+                        l += 1
+    return result
+
+# LONGEST SUBSTRING W/O REPEATING CHARACTERS
+def lengthOfLongestSubstring(self, s: str) -> int:
+    charSet = set()
+    l = 0
+    result = 0
+    
+    for r in range(len(s)):
+        while s[r] in charSet:
+            charSet.remove(s[l])
+            l += 1
+        charSet.add(s[r])
+        result = max(result, r - l + 1)
+    return result
+
+# REVERSE STRING
+def reverseString(self, s) -> None:
+    """
+    Do not return anything, modify s in-place instead.
+    """
+    l, r = 0, len(s)-1
+    
+    while l < r:
+        s[l], s[r] = s[r], s[l]
+        l += 1
+        r -= 1
